@@ -14,7 +14,7 @@ export const HeaderButtons = ({ onExport, chartData }) => {
         disabled={!chartData.length}
         variant="success"
         icon={Download}
-        className="hidden sm:flex"
+        className="sm:flex"
       >
         Export CSV
       </Button>

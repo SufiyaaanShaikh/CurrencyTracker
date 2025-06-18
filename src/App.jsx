@@ -40,8 +40,6 @@ export default function App() {
   return (
     <ThemeProvider>
       <AppHeader onExport={exportToCSV} chartData={chartData} />
-      <div className="min-h-screen pt-32 transition-colors duration-200 dark:bg-gray-900 dark:text-white bg-gray-50 text-gray-900">
-        <div className="container mx-auto px-4 py-6 max-w-7xl">
           <MainLayout
             currencyPairs={currencyPairs}
             newBaseCurrency={newBaseCurrency}
@@ -61,8 +59,6 @@ export default function App() {
             error={error}
             onRetry={loadData}
           />
-        </div>
-      </div>
     </ThemeProvider>
   );
 }

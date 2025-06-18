@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import {
   LineChart,
-  AreaChart,
+  BarChart,
   Line,
   XAxis,
   YAxis,
@@ -10,14 +10,13 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  BarChart,
   Bar,
 } from "recharts";
 import { CustomTooltip } from "./CustomTooltip";
 import { ThemeContext } from "../common/ThemeProvider";
-import { chartColors } from "../../constants/chartColors";
 import { LoadingSpinner } from "../common/LoadingSpinner";
 import { ErrorMessage } from "../common/ErrorMessage";
+import { chartColors } from "../../constants/chartColors";
 
 export const CurrencyChart = ({
   chartData,
@@ -35,10 +34,16 @@ export const CurrencyChart = ({
   if (error) return <ErrorMessage message={error} onRetry={onRetry} />;
 
   return (
-    <div className="p-6 rounded-lg mb-3.5 border dark:bg-gray-800 dark:border-gray-700 bg-white border-gray-200">
+    <div className={`p-6 rounded-lg mb-3.5 border ${
+      isDark
+        ? "bg-gray-800 border-gray-700"
+        : "bg-white border-gray-200"
+    }`}>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <h2 className="text-xl font-semibold">Exchange Rate History</h2>
-        <div className="text-sm dark:text-gray-400 text-gray-600">
+        <h2 className={`text-xl font-semibold ${ isDark? "text-gray-200" : "text-gray-800"}`}>Exchange Rate History</h2>
+        <div className={`text-sm ${
+          isDark ? "text-gray-400" : "text-gray-600"
+        }`}>
           {startDate} to {endDate}
         </div>
       </div>
@@ -104,7 +109,9 @@ export const CurrencyChart = ({
           </ResponsiveContainer>
         </div>
       ) : (
-        <div className="text-center py-8 dark:text-gray-400 text-gray-600">
+        <div className={`text-center py-8 ${
+          isDark ? "text-gray-400" : "text-gray-600"
+        }`}>
           No data available for the selected date range and currency pairs.
         </div>
       )}
