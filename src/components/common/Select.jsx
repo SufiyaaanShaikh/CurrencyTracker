@@ -29,7 +29,7 @@ export const Select = ({
 
       {isOpen && (
         <div
-          className={`absolute z-10 w-full mt-1 border rounded-lg shadow-lg max-h-60 overflow-auto ${
+          className={`absolute z-[2] w-full mt-1 border rounded-lg shadow-lg max-h-60 overflow-auto ${
             isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"
           }`}
         >

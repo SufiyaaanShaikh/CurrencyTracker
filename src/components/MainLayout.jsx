@@ -1,5 +1,5 @@
 // src/components/MainLayout.jsx
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CurrencyChart } from "./charts/CurrencyChart";
 import { CurrencyPairList } from "./currency/CurrencyPairList";
 import { CurrencyConverter } from "./converter/CurrencyConverter";
@@ -8,27 +8,38 @@ import { Button } from "./common/Button";
 import { ThemeContext } from "./common/ThemeProvider";
 import { Calendar, Globe, Plus, BarChart3, LineChartIcon } from "lucide-react";
 import { currencies } from "../constants/currencies";
+import { useCurrencyData } from "../hooks/useCurrencyData";
 
-export const MainLayout = ({
-  currencyPairs,
-  newBaseCurrency,
-  newTargetCurrency,
-  setNewBaseCurrency,
-  setNewTargetCurrency,
-  addCurrencyPair,
-  removeCurrencyPair,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  chartType,
-  setChartType,
-  chartData,
-  loading,
-  error,
-  onRetry,
-}) => {
+export const MainLayout = () => {
+   const {
+      currencyPairs,
+      startDate,
+      setStartDate,
+      endDate,
+      setEndDate,
+      chartData,
+      loading,
+      error,
+      addCurrencyPair,
+      removeCurrencyPair,
+      loadData: onRetry,
+    } = useCurrencyData();
+
   const { isDark } = useContext(ThemeContext);
+
+
+   const [newBaseCurrency, setNewBaseCurrency] = useState("");
+    const [newTargetCurrency, setNewTargetCurrency] = useState("");
+    const [chartType, setChartType] = useState("line");
+  
+    const handleAddCurrencyPair = () => {
+      addCurrencyPair({
+        base: newBaseCurrency,
+        target: newTargetCurrency,
+      });
+      setNewBaseCurrency("");
+      setNewTargetCurrency("");
+    };
 
   return (
     <div className={`min-h-screen pt-20 transition-colors duration-200 bg-gray-50 text-gray-900 ${isDark ? "dark:bg-gray-900 dark:text-gray-200" : ""}`}>
@@ -76,7 +87,7 @@ export const MainLayout = ({
                   placeholder="Select target currency"
                 />
                 <Button
-                  onClick={addCurrencyPair}
+                  onClick={handleAddCurrencyPair}
                   disabled={
                     !newBaseCurrency ||
                     !newTargetCurrency ||

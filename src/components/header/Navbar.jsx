@@ -9,13 +9,14 @@ function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Exchange Rate", path: "/exchange-rate" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" }
   ];
 
   return (
     <nav className={`sticky top-0 z-50 ${isDark ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-1 py-2">
         <div className="flex justify-center">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">

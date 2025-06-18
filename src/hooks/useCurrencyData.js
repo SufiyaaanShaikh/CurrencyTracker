@@ -5,8 +5,9 @@ import { FRANKFURTER_API_BASE } from "../constants/currencies";
 export const useCurrencyData = (initialPairs = [{ base: "EUR", target: "USD", id: 1 }]) => {
   const [availableCurrencies, setAvailableCurrencies] = useState([]);
   const [currencyPairs, setCurrencyPairs] = useState(initialPairs);
-  const [startDate, setStartDate] = useState("2024-11-01");
-  const [endDate, setEndDate] = useState("2024-11-25");
+  const [startDate, setStartDate] = useState("2025-01-01");
+  const [endDate, setEndDate] = useState( (new Date().toISOString().split("T")[0]) || "2024-11-30");
+  console.log(new Date().toISOString().split("T")[0]);
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
