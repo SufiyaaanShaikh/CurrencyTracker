@@ -6,7 +6,7 @@ import { ThemeContext } from "../common/ThemeProvider";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 
-export const AppHeader = ({ onExport, chartData }) => {
+export const AppHeader = ({ onExport, chartData, error }) => {
   const { isDark } = useContext(ThemeContext);
   return (
     <div
@@ -29,7 +29,7 @@ export const AppHeader = ({ onExport, chartData }) => {
         </div>
         <div className="flex justify-center items-center gap-2">
         <Navbar />
-        <HeaderButtons onExport={onExport} chartData={chartData} />
+        <HeaderButtons onExport={onExport} chartData={chartData} error={error}/>
         </div>
       </div>
     </div>

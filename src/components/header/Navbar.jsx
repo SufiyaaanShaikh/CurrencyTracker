@@ -51,7 +51,7 @@ function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className={`md:hidden mt-2 pb-3 space-y-1 ${
+          <div className={`md:hidden p-2 w-max absolute right-0 mt-2 pb-3 space-y-1 ${
             isDark ? 'bg-gray-800' : 'bg-gray-50'
           } rounded-md transition-all duration-300 ease-in-out`}
           >

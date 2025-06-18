@@ -7,7 +7,6 @@ export const useCurrencyData = (initialPairs = [{ base: "EUR", target: "USD", id
   const [currencyPairs, setCurrencyPairs] = useState(initialPairs);
   const [startDate, setStartDate] = useState("2025-01-01");
   const [endDate, setEndDate] = useState( (new Date().toISOString().split("T")[0]) || "2024-11-30");
-  console.log(new Date().toISOString().split("T")[0]);
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -37,6 +36,10 @@ export const useCurrencyData = (initialPairs = [{ base: "EUR", target: "USD", id
 
   const fetchExchangeRates = async (base, target, start, end) => {
     const cacheKey = `${base}-${target}-${start}-${end}`;
+
+    if(start > end) {
+      throw new Error("Start date cannot be after end date"); 
+    }
 
     if (cache[cacheKey]) {
       return cache[cacheKey];

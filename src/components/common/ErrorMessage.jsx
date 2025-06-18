@@ -6,7 +6,7 @@ export const ErrorMessage = ({ message, onRetry }) => {
   const { isDark } = useContext(ThemeContext);
   return (
     <div
-      className={`p-4 rounded-lg border ${
+      className={`p-4 rounded-lg border mb-4 ${
         isDark
           ? "bg-red-900 border-red-700 text-red-200"
           : "bg-red-50 border-red-200 text-red-800"
