@@ -26,6 +26,22 @@ export const CurrencyConverter = () => {
       });
       return;
     }
+    if (converterAmount <= 0) {
+      setConverterResult(null);
+      return;
+    }
+
+    if (converterAmount > 100000000000000) {
+      setConverterResult({
+        amount: converterAmount,
+        from: converterFrom,
+        to: converterTo,
+        result: `Amount exceeds limit`,
+        rate: 0,
+        date: new Date().toISOString().split("T")[0],
+      });
+      return;
+    }
 
     setConverterLoading(true);
     try {
@@ -84,9 +100,7 @@ export const CurrencyConverter = () => {
           <input
             type="number"
             value={converterAmount}
-            onChange={(e) =>
-              setConverterAmount(parseFloat(e.target.value))
-            }
+            onChange={(e) => setConverterAmount(parseFloat(e.target.value))}
             className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
               isDark
                 ? "bg-zinc-700 border-zinc-600 text-white focus:ring-blue-500"
@@ -133,17 +147,22 @@ export const CurrencyConverter = () => {
             <div
               className={`text-xl font-semibold ${
                 isDark ? "text-green-400" : "text-green-600"
-              }`}
+              } ${converterResult.rate === 0 ? "text-red-600" : ""}`}
             >
-              {converterResult.result} {converterResult.to}
+              {converterResult.result}{" "}
+              {converterResult.rate == 0 ? "" : converterResult.to}
             </div>
             <div
               className={`text-sm mt-1 ${
                 isDark ? "text-gray-300" : "text-gray-600"
               }`}
             >
-              1 {converterResult.from} = {converterResult.rate.toFixed(4)}{" "}
-              {converterResult.to}
+              {converterResult.rate === 0
+                ? ""
+                : ` 1 ${converterResult.from} = ${converterResult.rate.toFixed(
+                    4
+                  )}
+              ${converterResult.to}`}
             </div>
             <div
               className={`text-xs mt-2 ${
