@@ -110,7 +110,7 @@ export const CurrencyConverter = () => {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="flex flex-col md:grid grid-cols-2 gap-3">
           <Select
             value={converterFrom}
             onChange={setConverterFrom}
