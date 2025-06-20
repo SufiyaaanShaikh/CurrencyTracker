@@ -85,7 +85,7 @@ export const CurrencyConverter = () => {
             type="number"
             value={converterAmount}
             onChange={(e) =>
-              setConverterAmount(parseFloat(e.target.value) || 0)
+              setConverterAmount(parseFloat(e.target.value))
             }
             className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
               isDark
