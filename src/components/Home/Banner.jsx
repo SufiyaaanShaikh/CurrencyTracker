@@ -17,7 +17,7 @@ function Banner() {
       }`}
     >
       <div
-        className={`h-screen max-w-7xl mx-auto mt-14 md:mt-0 px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-8`}
+        className={`md:gap-8 md:h-screen max-w-7xl mx-auto mt-14 md:mt-0 px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-16`}
       >
         <div className="flex flex-col items-start justify-center w-full md:w-1/2 space-y-6">
           <h1
