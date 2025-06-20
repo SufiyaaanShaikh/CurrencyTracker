@@ -21,7 +21,7 @@ function Banner() {
       >
         <div className="flex flex-col items-start justify-center w-full md:w-1/2 space-y-6">
           <h1
-            className={`text-3xl md:text-5xl font-bold leading-tight ${
+            className={`text-3xl text-balance md:text-5xl font-bold leading-tight ${
               isDark ? "text-zinc-100" : "text-zinc-900"
             }`}
           >
