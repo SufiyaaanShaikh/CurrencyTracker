@@ -15,6 +15,17 @@ export const CurrencyConverter = () => {
 
   const convertCurrency = async () => {
     if (!converterFrom || !converterTo || !converterAmount) return;
+    if (converterFrom === converterTo) {
+      setConverterResult({
+        amount: converterAmount,
+        from: converterFrom,
+        to: converterTo,
+        result: converterAmount.toFixed(2),
+        rate: 1,
+        date: new Date().toISOString().split("T")[0],
+      });
+      return;
+    }
 
     setConverterLoading(true);
     try {

@@ -16,7 +16,7 @@ export const Select = ({
     <div className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-4 py-2.5 text-left border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+        className={`w-full px-4 py-2.5 cursor-pointer text-left border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
           isDark
             ? "bg-zinc-700 border-zinc-600 text-white hover:bg-zinc-600"
             : "bg-white border-gray-300 text-gray-900 hover:bg-gray-50"
@@ -29,7 +29,7 @@ export const Select = ({
 
       {isOpen && (
         <div
-          className={`absolute z-10 w-full mt-1 border rounded-xl shadow-lg max-h-60 overflow-auto ${
+            className={`absolute z-[2] w-full mt-1 border rounded-xl shadow-lg max-h-60 overflow-auto ${
             isDark ? "bg-zinc-800 border-zinc-700" : "bg-white border-gray-200"
           }`}
         >
@@ -40,7 +40,7 @@ export const Select = ({
                 onChange(option.code);
                 setIsOpen(false);
               }}
-              className={`w-full px-4 py-2.5 text-left transition-colors flex items-center ${
+              className={`w-full cursor-pointer px-4 py-2.5 text-left transition-colors flex items-center ${
                 isDark
                   ? "hover:bg-zinc-700 text-gray-200"
                   : "hover:bg-gray-100 text-gray-800"

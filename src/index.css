@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@keyframes flyUp {
+  0% { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translateY(-40px) rotate(-45deg); 
+    opacity: 0.9; 
+  }
+  100% { 
+    transform: translateY(-150px) rotate(-45deg); 
+    opacity: 0; 
+  }
+}

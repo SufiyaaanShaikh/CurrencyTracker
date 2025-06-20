@@ -1,6 +1,6 @@
 // src/hooks/useCurrencyData.js
 import { useState, useEffect } from "react";
-import { FRANKFURTER_API_BASE } from "../constants/currencies";
+import { currencies, FRANKFURTER_API_BASE } from "../constants/currencies";
 
 export const useCurrencyData = (initialPairs = [{ base: "EUR", target: "USD", id: 1 }]) => {
   const [availableCurrencies, setAvailableCurrencies] = useState([]);
