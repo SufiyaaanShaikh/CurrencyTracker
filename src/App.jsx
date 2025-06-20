@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import { AppFooter } from "./components/footer/AppFooter";
 import ScrollToTop from "./components/common/ScrollToTop ";
 import { Toaster } from "react-hot-toast";
+import NotFoundPage from "./pages/NotFoundPage ";
 
 export default function App() {
   const { chartData, exportToCSV, error } = useCurrencyData();
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollToTop />
       <AppFooter />
