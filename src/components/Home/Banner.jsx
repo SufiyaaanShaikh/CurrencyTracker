@@ -1,39 +1,58 @@
-import React, { useContext } from 'react'
-import { ThemeContext } from '../common/ThemeProvider'
-import BannerImage  from "../../assets/BannerImage2.svg"
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../common/ThemeProvider";
+import BannerImage from "../../assets/BannerImage.svg";
+import BannerImagewhite from "../../assets/BannerImagewhite.svg";
+import { ArrowRight } from "lucide-react";
+import { Button } from "../common/Button";
 
 function Banner() {
-
-   const { isDark } = useContext(ThemeContext);
+  const { isDark } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   return (
-    <div className={`relative w-full h-screen overflow-hidden ${isDark ? 'dark:bg-gray-900' : 'bg-white'}`}>
-    <div className={`banner h-screen max-w-7xl py-2 px-4 gap-5 m-auto flex bg-white ${isDark ? 'dark:bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="flex flex-col items-baseline justify-center w-full h-full ">
-        <h1 className={`text-4xl font-bold mb-4 ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>
-          Welcome to Currency Tracker
-        </h1>
-        <p className={`text-lg text-left mb-6 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-          Track and compare currency exchange rates in real-time.
-        </p>
-        <button className={`px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors ${isDark ? 'dark:bg-blue-800 dark:hover:bg-blue-700' : ''}`}>
-          Get Started
-        </button>
-      </div>
-      <div className=" flex items-center justify-center w-full h-full">
-    
-        <div className=' max-w-xl'>
-        <img 
-          src={BannerImage }
-          alt="Currency Tracker Banner" 
-          className="w-full h-auto object-cover mt-8"
-        />
+    <div
+      className={`relative w-full h-screen overflow-hidden ${
+        isDark ? "bg-zinc-900" : "bg-zinc-50"
+      }`}
+    >
+      <div
+        className={`h-screen max-w-7xl mx-auto mt-14 md:mt-0 px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-8`}
+      >
+        <div className="flex flex-col items-start justify-center w-full md:w-1/2 space-y-6">
+          <h1
+            className={`text-3xl md:text-5xl font-bold leading-tight ${
+              isDark ? "text-zinc-100" : "text-zinc-900"
+            }`}
+          >
+            Welcome to Currency Tracker
+          </h1>
+          <p
+            className={`text-xl md:text-2xl ${
+              isDark ? "text-zinc-300" : "text-zinc-600"
+            }`}
+          >
+            Track and compare currency exchange rates in real-time.
+          </p>
+          <Button
+            className={`bg-zinc-100 cursor-pointer hover:bg-zinc-200 text-zinc-900 hover:text-zinc-900 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-zinc-100 dark:hover:text-zinc-100`}
+            onClick={() => navigate("/exchange-rate")}
+          >
+            Get Started
+            <ArrowRight size={20} className="mt-0.5" />
+          </Button>
+        </div>
+
+        <div className="w-full md:w-1/2 flex items-center justify-center">
+          <img
+            src={isDark ? BannerImagewhite : BannerImage}
+            alt="Currency Tracker Banner"
+            className="w-full max-w-xl h-auto object-contain"
+          />
         </div>
       </div>
-
     </div>
-    </div>
-  )
+  );
 }
 
-export default Banner
+export default Banner;

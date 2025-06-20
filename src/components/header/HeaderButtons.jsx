@@ -28,7 +28,7 @@ export const HeaderButtons = ({ onExport, chartData, error }) => {
       <Button
         onClick={toggleTheme}
         variant="secondary"
-        className="p-2"
+        className="p-2 cursor-pointer"
         icon={isDark ? Sun : Moon}
       />
     </div>

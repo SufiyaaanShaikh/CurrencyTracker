@@ -52,23 +52,23 @@ export const CurrencyConverter = () => {
 
   return (
     <div
-      className={`p-4 rounded-lg border ${
-        isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"
+      className={`p-6 rounded-xl shadow-sm border ${
+        isDark ? "bg-zinc-800 border-zinc-700" : "bg-white border-gray-200"
       }`}
     >
       <h3
-        className={`font-semibold mb-3 flex items-center gap-2 ${
+        className={`font-semibold mb-4 flex items-center gap-2 ${
           isDark ? "text-gray-200" : "text-gray-800"
         }`}
       >
         <TrendingUp
-          size={18}
-          className={`${isDark ? "text-blue-400" : "text-blue-600"}`}
+          size={20}
+          className={isDark ? "text-blue-400" : "text-blue-600"}
         />
         Quick Converter
       </h3>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         <div>
           <input
             type="number"
@@ -76,16 +76,16 @@ export const CurrencyConverter = () => {
             onChange={(e) =>
               setConverterAmount(parseFloat(e.target.value) || 0)
             }
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
               isDark
-                ? "bg-gray-700 border-gray-600 text-white"
-                : "bg-white border-gray-300 text-gray-900"
+                ? "bg-zinc-700 border-zinc-600 text-white focus:ring-blue-500"
+                : "bg-white border-gray-300 text-gray-900 focus:ring-blue-500"
             }`}
             placeholder="Amount"
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-3">
           <Select
             value={converterFrom}
             onChange={setConverterFrom}
@@ -101,42 +101,42 @@ export const CurrencyConverter = () => {
         </div>
 
         {converterLoading ? (
-          <div className="flex items-center justify-center p-6">
+          <div className="flex items-center justify-center p-4">
             <div
-              className={`animate-spin rounded-full h-8 w-8 border-b-2 ${
+              className={`animate-spin rounded-full h-6 w-6 border-b-2 ${
                 isDark ? "border-blue-400" : "border-blue-600"
               }`}
             ></div>
             <span
-              className={`ml-2 ${isDark ? "text-gray-300" : "text-gray-600"}`}
+              className={`ml-3 ${isDark ? "text-gray-300" : "text-gray-600"}`}
             >
-              Loading...
+              Converting...
             </span>
           </div>
         ) : converterResult ? (
           <div
-            className={`p-3 rounded-lg ${
-              isDark ? "bg-gray-700" : "bg-gray-50"
+            className={`p-4 rounded-lg ${
+              isDark ? "bg-zinc-700" : "bg-gray-50"
             }`}
           >
             <div
-              className={`text-lg font-semibold ${
+              className={`text-xl font-semibold ${
                 isDark ? "text-green-400" : "text-green-600"
               }`}
             >
               {converterResult.result} {converterResult.to}
             </div>
             <div
-              className={`text-xs ${
-                isDark ? "text-gray-400" : "text-gray-600"
+              className={`text-sm mt-1 ${
+                isDark ? "text-gray-300" : "text-gray-600"
               }`}
             >
               1 {converterResult.from} = {converterResult.rate.toFixed(4)}{" "}
               {converterResult.to}
             </div>
             <div
-              className={`text-xs ${
-                isDark ? "text-gray-500" : "text-gray-500"
+              className={`text-xs mt-2 ${
+                isDark ? "text-gray-400" : "text-gray-500"
               }`}
             >
               As of {converterResult.date}

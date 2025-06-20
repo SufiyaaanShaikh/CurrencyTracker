@@ -11,48 +11,47 @@ import { currencies } from "../constants/currencies";
 import { useCurrencyData } from "../hooks/useCurrencyData";
 
 export const MainLayout = () => {
-   const {
-      currencyPairs,
-      startDate,
-      setStartDate,
-      endDate,
-      setEndDate,
-      chartData,
-      loading,
-      error,
-      addCurrencyPair,
-      removeCurrencyPair,
-      loadData: onRetry,
-    } = useCurrencyData();
+  const {
+    currencyPairs,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    chartData,
+    loading,
+    error,
+    addCurrencyPair,
+    removeCurrencyPair,
+    loadData: onRetry,
+  } = useCurrencyData();
 
   const { isDark } = useContext(ThemeContext);
 
+  const [newBaseCurrency, setNewBaseCurrency] = useState("");
+  const [newTargetCurrency, setNewTargetCurrency] = useState("");
+  const [chartType, setChartType] = useState("line");
 
-   const [newBaseCurrency, setNewBaseCurrency] = useState("");
-    const [newTargetCurrency, setNewTargetCurrency] = useState("");
-    const [chartType, setChartType] = useState("line");
-  
-    const handleAddCurrencyPair = () => {
-      addCurrencyPair({
-        base: newBaseCurrency,
-        target: newTargetCurrency,
-      });
-      setNewBaseCurrency("");
-      setNewTargetCurrency("");
-    };
+  const handleAddCurrencyPair = () => {
+    addCurrencyPair({
+      base: newBaseCurrency,
+      target: newTargetCurrency,
+    });
+    setNewBaseCurrency("");
+    setNewTargetCurrency("");
+  };
 
   return (
-    <div className={`min-h-screen pt-20 transition-colors duration-200 bg-gray-50 text-gray-900 ${isDark ? "dark:bg-gray-900 dark:text-gray-200" : ""}`}>
+    <div className={`min-h-screen pt-20 transition-colors duration-200 ${isDark ? "bg-zinc-900 text-gray-200" : "bg-gray-50 text-gray-900"}`}>
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Controls Panel */}
           <div className="lg:col-span-1 space-y-6">
             {/* Currency Pairs */}
             <div
-              className={`p-4 rounded-lg border ${
+              className={`p-4 rounded-xl shadow-sm ${
                 isDark
-                  ? "bg-gray-800 border-gray-700"
-                  : "bg-white border-gray-200"
+                  ? "bg-zinc-800 border border-zinc-700"
+                  : "bg-white border border-gray-200"
               }`}
             >
               <h3
@@ -103,10 +102,10 @@ export const MainLayout = () => {
 
             {/* Date Range */}
             <div
-              className={`p-4 rounded-lg border ${
+              className={`p-4 rounded-xl shadow-sm ${
                 isDark
-                  ? "bg-gray-800 border-gray-700"
-                  : "bg-white border-gray-200"
+                  ? "bg-zinc-800 border border-zinc-700"
+                  : "bg-white border border-gray-200"
               }`}
             >
               <h3
@@ -136,7 +135,7 @@ export const MainLayout = () => {
                     onChange={(e) => setStartDate(e.target.value)}
                     className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       isDark
-                        ? "bg-gray-700 border-gray-600 text-white"
+                        ? "bg-zinc-700 border-zinc-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   />
@@ -156,7 +155,7 @@ export const MainLayout = () => {
                     onChange={(e) => setEndDate(e.target.value)}
                     className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       isDark
-                        ? "bg-gray-700 border-gray-600 text-white"
+                        ? "bg-zinc-700 border-zinc-600 text-white"
                         : "bg-white border-gray-300 text-gray-900"
                     }`}
                   />
@@ -166,10 +165,10 @@ export const MainLayout = () => {
 
             {/* Chart Controls */}
             <div
-              className={`p-4 rounded-lg border ${
+              className={`p-4 rounded-xl shadow-sm ${
                 isDark
-                  ? "bg-gray-800 border-gray-700"
-                  : "bg-white border-gray-200"
+                  ? "bg-zinc-800 border border-zinc-700"
+                  : "bg-white border border-gray-200"
               }`}
             >
               <h3
@@ -183,14 +182,14 @@ export const MainLayout = () => {
               <div className="flex gap-2">
                 <Button
                   onClick={() => setChartType("line")}
-                  variant={chartType === "line" ? "primary" : "secondary"}
+                  variant={chartType === "line" ? "primary" : isDark ? "secondary" : "outline"}
                   icon={LineChartIcon}
                 >
                   Line
                 </Button>
                 <Button
                   onClick={() => setChartType("bar")}
-                  variant={chartType === "bar" ? "primary" : "secondary"}
+                  variant={chartType === "bar" ? "primary" : isDark ? "secondary" : "outline"}
                   icon={BarChart3}
                 >
                   Bar
@@ -201,17 +200,23 @@ export const MainLayout = () => {
 
           {/* Chart Area */}
           <div className="lg:col-span-3">
-            <CurrencyChart
-              chartData={chartData}
-              currencyPairs={currencyPairs}
-              chartType={chartType}
-              loading={loading}
-              error={error}
-              startDate={startDate}
-              endDate={endDate}
-              onRetry={onRetry}
-            />
-            <CurrencyConverter />
+            <div className={`p-4 rounded-xl shadow-sm h-full ${
+              isDark ? "bg-zinc-800 border border-zinc-700" : "bg-white border border-gray-200"
+            }`}>
+              <CurrencyChart
+                chartData={chartData}
+                currencyPairs={currencyPairs}
+                chartType={chartType}
+                loading={loading}
+                error={error}
+                startDate={startDate}
+                endDate={endDate}
+                onRetry={onRetry}
+              />
+            
+              <CurrencyConverter />
+            
+            </div>
           </div>
         </div>
       </div>

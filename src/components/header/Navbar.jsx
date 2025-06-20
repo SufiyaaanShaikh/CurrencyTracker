@@ -15,19 +15,19 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`sticky top-0 z-50 ${isDark ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="container mx-auto px-1 py-2">
-        <div className="flex justify-center">
+    <nav className={`sticky top-0 z-50 ${isDark ? 'bg-zinc-900' : 'bg-white'}`}>
+      <div className=" mx-auto">
+        <div className="flex justify-between items-center h-14">
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-2 py-2 rounded-lg text-sm font-medium transition-colors ${
                   isDark
-                    ? 'text-gray-300 hover:text-white hover:bg-gray-700'
-                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                    ? 'text-zinc-300 hover:text-white hover:bg-zinc-800'
+                    : 'text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100'
                 }`}
               >
                 {link.name}
@@ -36,39 +36,42 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`p-2 rounded-md focus:outline-none ${
-                isDark ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'
+              className={`p-2 cursor-pointer rounded-lg focus:outline-none ${
+                isDark ? 'text-zinc-300 hover:bg-zinc-800' : 'text-zinc-700 hover:bg-zinc-100'
               }`}
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? (
+                <X size={20} />
+              ) : (
+                <Menu size={20} />
+              )}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className={`md:hidden p-2 w-max absolute right-0 mt-2 pb-3 space-y-1 ${
-            isDark ? 'bg-gray-800' : 'bg-gray-50'
-          } rounded-md transition-all duration-300 ease-in-out`}
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  isDark
-                    ? 'text-gray-300 hover:text-white hover:bg-gray-700'
-                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+          <div className={`md:hidden absolute w-max  right-0 ${isDark ? 'bg-zinc-900' : 'bg-white'} border-b ${isDark ? 'border-zinc-800' : 'border-gray-200'} shadow-md transition-all duration-200 ease-in-out`}>
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                    isDark
+                      ? 'text-zinc-300 hover:text-white hover:bg-zinc-800'
+                      : 'text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
         )}
       </div>
